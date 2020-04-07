@@ -24,33 +24,72 @@ a working demo of the theme in the `theme documentation`_
 .. _Read the Docs: http://www.readthedocs.org
 .. _theme documentation: https://sphinx-rtd-theme.readthedocs.io/en/latest/
 
-Installation
-============
+Simple Installation & Usage:
+----------------------------
 
-This theme is distributed on PyPI_ and can be installed with ``pip``:
+We assume that you already have a sphinx documentation project (read their 
+documentation for advice on how to do that). In order to use this theme, you 
+can either install it in a central location (if you plan to use it for more 
+then one project) or install a copy of it with your sphinx documentation 
+project (recommended route, explained here). 
 
-.. code:: console
+You can get the latest version of this theme as a unix 'tarball' `here
+<https://github.com/OB7-IRD/sphinx_ob7_theme/tarball/master>`_, or if
+you prefer, the latest version is available as a zip file `here
+<https://github.com/OB7-IRD/sphinx_ob7_theme/zipball/master>`_.
 
-   $ pip install sphinx-rtd-theme
+Assuming you have extracted this theme under::
 
-To use the theme in your Sphinx project, you will need to add the following to
-your ``conf.py`` file:
+   <your sphinx project>/sphinx_ob7_theme
 
-.. code:: python
+and your documentation sources live in a subdirectory e.g.::
 
-    import sphinx_rtd_theme
+   <your sphinx project>/source
 
-    extensions = [
-        ...
-        "sphinx_rtd_theme",
-    ]
+then modify your project/source/conf.py to include the theme directory and
+indicate that this theme should be used::
 
-    html_theme = "sphinx_rtd_theme"
+   html_theme = 'sphinx_ob7_theme'
+   html_theme_path = ['_themes']
 
-For more information read the full documentation on `installing the theme`_
+Then regenerate your documentation::
 
-.. _PyPI: https://pypi.python.org/pypi/sphinx_rtd_theme
-.. _installing the theme: https://sphinx-rtd-theme.readthedocs.io/en/latest/installing.html
+   make html
+
+And you should see a new theme activated on your html output when opening
+it with a web browser.
+
+Advandced Installation as a git submodule:
+==========================================
+
+As an alternative to downloading the theme as a zip file, you can use git
+submodule support to include it in your git project::
+
+   git submodule add git@github.com:OB7-IRD/sphinx_ob7_theme.git sphinx_ob7_theme
+   git submodule
+   git submodule init sphinx_ob7_theme
+   git submodule update sphinx_ob7_theme
+   git status
+   git commit -m "Import sphinx_ob7_theme as a git submodule" -a
+   git push
+   make html
+
+The above being a typical workflow to incorporate the theme as a submodule in
+your project.
+
+.. note:: The theme is frozen at the particular version that was current when
+   you perform the git submodule update command.
+
+If you wish to obtain updates to the theme submodule, the procedure is
+something like this::
+
+   cd <your sphinx project>/sphinx_ob7_theme
+   git pull
+   cd ..
+
+Then commit the fact that the submodule now tracks a different SHA1::
+
+   git commit -am "Updates sphinx_ob7_theme theme to latest version"
 
 Configuration
 =============
